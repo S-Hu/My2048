@@ -1,3 +1,3 @@
 # My2048 
 Original version of the game:
-gabrielecirulli.github.io/2048
+<url>gabrielecirulli.github.io/2048</url>
