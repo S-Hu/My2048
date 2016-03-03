@@ -1,7 +1,7 @@
 
-// My2048Dlg.cpp : ÊµÏÖÎÄ¼ş
-//±±¾©´óÑ§¡¶C++ÓïÑÔ³ÌĞòÉè¼Æ¡·¿Î³Ì×÷Òµ
-//1400015962 ºúË³ê¿
+// My2048Dlg.cpp : å®ç°æ–‡ä»¶
+//C++ Programming
+//by S.Hu
 
 #include "stdafx.h"
 #include "My2048.h"
@@ -14,7 +14,7 @@ using namespace std;
 #endif
 
 
-// CMy2048Dlg ¶Ô»°¿ò
+// CMy2048Dlg å¯¹è¯æ¡†
 
 CMy2048Dlg::CMy2048Dlg(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_MY2048_DIALOG, pParent)
@@ -39,38 +39,38 @@ BEGIN_MESSAGE_MAP(CMy2048Dlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CMy2048Dlg ÏûÏ¢´¦Àí³ÌĞò
+// CMy2048Dlg æ¶ˆæ¯å¤„ç†ç¨‹åº
 
 BOOL CMy2048Dlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// ÉèÖÃ´Ë¶Ô»°¿òµÄÍ¼±ê¡£  µ±Ó¦ÓÃ³ÌĞòÖ÷´°¿Ú²»ÊÇ¶Ô»°¿òÊ±£¬¿ò¼Ü½«×Ô¶¯
-	//  Ö´ĞĞ´Ë²Ù×÷
-	SetIcon(m_hIcon, TRUE);			// ÉèÖÃ´óÍ¼±ê
-	SetIcon(m_hIcon, FALSE);		// ÉèÖÃĞ¡Í¼±ê
+	// è®¾ç½®æ­¤å¯¹è¯æ¡†çš„å›¾æ ‡ã€‚  å½“åº”ç”¨ç¨‹åºä¸»çª—å£ä¸æ˜¯å¯¹è¯æ¡†æ—¶ï¼Œæ¡†æ¶å°†è‡ªåŠ¨
+	//  æ‰§è¡Œæ­¤æ“ä½œ
+	SetIcon(m_hIcon, TRUE);			// è®¾ç½®å¤§å›¾æ ‡
+	SetIcon(m_hIcon, FALSE);		// è®¾ç½®å°å›¾æ ‡
 
-	// TODO: ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯´úÂë
-	srand((unsigned)time(NULL));//ÉèÖÃËæ»úÊıÖÖ×Ó
-	OnBnClickedRestart();//ĞÂ¾Ö³õÊ¼»¯
-	SetTimer(1, 100, NULL);//ÉèÖÃ¼ÆÊ±Æ÷£¨¶¨Ê±Ë¢ĞÂ»æÍ¼£©
+	// TODO: åœ¨æ­¤æ·»åŠ é¢å¤–çš„åˆå§‹åŒ–ä»£ç 
+	srand((unsigned)time(NULL));//è®¾ç½®éšæœºæ•°ç§å­
+	OnBnClickedRestart();//æ–°å±€åˆå§‹åŒ–
+	SetTimer(1, 100, NULL);//è®¾ç½®è®¡æ—¶å™¨ï¼ˆå®šæ—¶åˆ·æ–°ç»˜å›¾ï¼‰
 
-	return TRUE;  // ³ı·Ç½«½¹µãÉèÖÃµ½¿Ø¼ş£¬·ñÔò·µ»Ø TRUE
+	return TRUE;  // é™¤éå°†ç„¦ç‚¹è®¾ç½®åˆ°æ§ä»¶ï¼Œå¦åˆ™è¿”å› TRUE
 }
 
-// Èç¹ûÏò¶Ô»°¿òÌí¼Ó×îĞ¡»¯°´Å¥£¬ÔòĞèÒªÏÂÃæµÄ´úÂë
-//  À´»æÖÆ¸ÃÍ¼±ê¡£  ¶ÔÓÚÊ¹ÓÃÎÄµµ/ÊÓÍ¼Ä£ĞÍµÄ MFC Ó¦ÓÃ³ÌĞò£¬
-//  Õâ½«ÓÉ¿ò¼Ü×Ô¶¯Íê³É¡£
+// å¦‚æœå‘å¯¹è¯æ¡†æ·»åŠ æœ€å°åŒ–æŒ‰é’®ï¼Œåˆ™éœ€è¦ä¸‹é¢çš„ä»£ç 
+//  æ¥ç»˜åˆ¶è¯¥å›¾æ ‡ã€‚  å¯¹äºä½¿ç”¨æ–‡æ¡£/è§†å›¾æ¨¡å‹çš„ MFC åº”ç”¨ç¨‹åºï¼Œ
+//  è¿™å°†ç”±æ¡†æ¶è‡ªåŠ¨å®Œæˆã€‚
 
 void CMy2048Dlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // ÓÃÓÚ»æÖÆµÄÉè±¸ÉÏÏÂÎÄ
+		CPaintDC dc(this); // ç”¨äºç»˜åˆ¶çš„è®¾å¤‡ä¸Šä¸‹æ–‡
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Ê¹Í¼±êÔÚ¹¤×÷Çø¾ØĞÎÖĞ¾ÓÖĞ
+		// ä½¿å›¾æ ‡åœ¨å·¥ä½œåŒºçŸ©å½¢ä¸­å±…ä¸­
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -78,7 +78,7 @@ void CMy2048Dlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// »æÖÆÍ¼±ê
+		// ç»˜åˆ¶å›¾æ ‡
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -86,18 +86,18 @@ void CMy2048Dlg::OnPaint()
 		CPaintDC dc(this);
 		CRect rect;
 		GetClientRect(&rect);
-		//Ìî³ä±³¾°É«
+		//å¡«å……èƒŒæ™¯è‰²
 		dc.FillSolidRect(rect, RGB(250, 248, 239));
-		//»æÖÆ±êÌâ
-		CFont titleFont;//´´½¨×ÖÌå
+		//ç»˜åˆ¶æ ‡é¢˜
+		CFont titleFont;//åˆ›å»ºå­—ä½“
 		titleFont.CreateFont(80, 40, 0, 0,
 			FW_BLACK, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_CHARACTER_PRECIS,
 			CLIP_CHARACTER_PRECIS, DEFAULT_QUALITY, FF_MODERN, _T("Arial"));
-		CFont *pOldFont = dc.SelectObject(&titleFont);//Ñ¡Ôñ×ÖÌå
-		dc.SetTextColor(RGB(119, 110, 101));//ÉèÖÃÑÕÉ«
-		RECT titleRect = { 40,10,230,80 };//¶¨Òå»æÖÆÇøÓò
-		dc.DrawText(_T("2048"), &titleRect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);//»æÖÆÎÄ±¾
-		//ÊÍ·ÅÄÚ´æ
+		CFont *pOldFont = dc.SelectObject(&titleFont);//é€‰æ‹©å­—ä½“
+		dc.SetTextColor(RGB(119, 110, 101));//è®¾ç½®é¢œè‰²
+		RECT titleRect = { 40,10,230,80 };//å®šä¹‰ç»˜åˆ¶åŒºåŸŸ
+		dc.DrawText(_T("2048"), &titleRect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);//ç»˜åˆ¶æ–‡æœ¬
+		//é‡Šæ”¾å†…å­˜
 		dc.SelectObject(pOldFont);
 		titleFont.DeleteObject();
 
@@ -105,41 +105,41 @@ void CMy2048Dlg::OnPaint()
 	}
 }
 
-//¼ÆÊ±Æ÷ÊÂ¼ş£¬¶¨Ê±Ë¢ĞÂ»æÖÆ´°Ìå
+//è®¡æ—¶å™¨äº‹ä»¶ï¼Œå®šæ—¶åˆ·æ–°ç»˜åˆ¶çª—ä½“
 void CMy2048Dlg::OnTimer(UINT_PTR nIDEvent){
-	//»æÍ¼³õÊ¼»¯£¨Ê¹ÓÃË«»º³å»æÍ¼£¬±ÜÃâ³öÏÖÍ¼ÏñÉÁË¸£©
+	//ç»˜å›¾åˆå§‹åŒ–ï¼ˆä½¿ç”¨åŒç¼“å†²ç»˜å›¾ï¼Œé¿å…å‡ºç°å›¾åƒé—ªçƒï¼‰
 	RECT rect;
 	GetClientRect(&rect);
 	CDC *pDC = GetDC();
-	CDC memDC;//¶¨ÒåÏÔÊ¾Éè±¸¶ÔÏó
-	CBitmap memBitmap;//¶¨ÒåÎ»Í¼¶ÔÏó
-	memDC.CreateCompatibleDC(pDC);//½¨Á¢ÓëÆÁÄ»ÏÔÊ¾¼æÈİµÄÄÚ´æÏÔÊ¾Éè±¸
-	memBitmap.CreateCompatibleBitmap(pDC, rect.right, rect.bottom);//´´½¨ÓëÆÁÄ»ÏÔÊ¾¼æÈİµÄÎ»Í¼
-	CBitmap *pOldBit = memDC.SelectObject(&memBitmap);//½«Î»Í¼Ñ¡ÈëÄÚ´æDC
-	memDC.SetBkMode(TRANSPARENT);//ÉèÖÃ×Ö·û´®±³¾°ÎªÍ¸Ã÷
+	CDC memDC;//å®šä¹‰æ˜¾ç¤ºè®¾å¤‡å¯¹è±¡
+	CBitmap memBitmap;//å®šä¹‰ä½å›¾å¯¹è±¡
+	memDC.CreateCompatibleDC(pDC);//å»ºç«‹ä¸å±å¹•æ˜¾ç¤ºå…¼å®¹çš„å†…å­˜æ˜¾ç¤ºè®¾å¤‡
+	memBitmap.CreateCompatibleBitmap(pDC, rect.right, rect.bottom);//åˆ›å»ºä¸å±å¹•æ˜¾ç¤ºå…¼å®¹çš„ä½å›¾
+	CBitmap *pOldBit = memDC.SelectObject(&memBitmap);//å°†ä½å›¾é€‰å…¥å†…å­˜DC
+	memDC.SetBkMode(TRANSPARENT);//è®¾ç½®å­—ç¬¦ä¸²èƒŒæ™¯ä¸ºé€æ˜
 	CFont *pOldFont;
 
-	//·½¿éµÄ¿í¶ÈÎª100£¬·½¿é¼äµÄ¼ä¸ôÎª10
+	//æ–¹å—çš„å®½åº¦ä¸º100ï¼Œæ–¹å—é—´çš„é—´éš”ä¸º10
 
-	/*---»æÖÆÆåÅÌ---*/
+	/*---ç»˜åˆ¶æ£‹ç›˜---*/
 	RECT boardRect = { 40, 150, 490, 600 };
 	memDC.FillSolidRect(&boardRect, RGB(187, 173, 160));
 
-	/*---»æÖÆ´Å¿é---*/
+	/*---ç»˜åˆ¶ç£å—---*/
 	for (int col = 0; col < 4; ++col)
 		for (int row = 0; row < 4; ++row) {
-			RECT tileRect = { 50 + col * 110, 160 + row * 110, 150 + col * 110, 260 + row * 110};//µ±Ç°¿éÎ»ÖÃ
-			const TileTraits &thisTile = tile[Matrix[col][row]];//È¡µ±Ç°¿éÊôĞÔ
-			memDC.FillSolidRect(&tileRect, thisTile.backColor);//Ìî³ä±³¾°
-			//»æÖÆÊı×Ö
-			if (thisTile.num != 0) {//0Îª¿Õ¸ñ£¬²»»­
+			RECT tileRect = { 50 + col * 110, 160 + row * 110, 150 + col * 110, 260 + row * 110};//å½“å‰å—ä½ç½®
+			const TileTraits &thisTile = tile[Matrix[col][row]];//å–å½“å‰å—å±æ€§
+			memDC.FillSolidRect(&tileRect, thisTile.backColor);//å¡«å……èƒŒæ™¯
+			//ç»˜åˆ¶æ•°å­—
+			if (thisTile.num != 0) {//0ä¸ºç©ºæ ¼ï¼Œä¸ç”»
 				CFont numFont;
 				numFont.CreateFont(thisTile.fontHeight, thisTile.fontWidth, 0, 0,
 					FW_BLACK, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_CHARACTER_PRECIS,
 					CLIP_CHARACTER_PRECIS, DEFAULT_QUALITY, FF_MODERN, _T("Arial"));
 				pOldFont = memDC.SelectObject(&numFont);
 				CString num2draw;
-				num2draw.Format(_T("%d"), thisTile.num);//Êı×Ö×ªCString
+				num2draw.Format(_T("%d"), thisTile.num);//æ•°å­—è½¬CString
 				memDC.SetTextColor(thisTile.frontColor);
 				memDC.DrawText(num2draw, &tileRect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
 				memDC.SelectObject(pOldFont);
@@ -147,11 +147,11 @@ void CMy2048Dlg::OnTimer(UINT_PTR nIDEvent){
 			}
 		}
 
-	/*---»æÖÆµÃ·Ö---*/
-	//±³¾°
+	/*---ç»˜åˆ¶å¾—åˆ†---*/
+	//èƒŒæ™¯
 	RECT scoreRect = { boardRect.right - 80, 20, boardRect.right, 70 };
 	memDC.FillSolidRect(&scoreRect, RGB(187, 173, 160));
-	//ÎÄ×Ö
+	//æ–‡å­—
 	CFont scoreFont;
 	scoreFont.CreateFont(22, 9, 0, 0,
 		FW_BLACK, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_CHARACTER_PRECIS,
@@ -165,7 +165,7 @@ void CMy2048Dlg::OnTimer(UINT_PTR nIDEvent){
 	memDC.SelectObject(pOldFont);
 	scoreFont.DeleteObject();
 
-	/*---»æÖÆGame OverÌáÊ¾---*/
+	/*---ç»˜åˆ¶Game Overæç¤º---*/
 	if (isFail){
 		CFont noticeFont;
 		noticeFont.CreateFont(80, 32, 0, 0,
@@ -178,27 +178,27 @@ void CMy2048Dlg::OnTimer(UINT_PTR nIDEvent){
 		noticeFont.DeleteObject();
 	}
 
-	//½«ÄÚ´æDCÖĞµÄÍ¼Ïñ¿½±´µ½Ç°Ì¨
+	//å°†å†…å­˜DCä¸­çš„å›¾åƒæ‹·è´åˆ°å‰å°
 	pDC->BitBlt(boardRect.left, boardRect.top, boardRect.right - boardRect.left, boardRect.bottom - boardRect.top,
 		&memDC, boardRect.left, boardRect.top, SRCCOPY);
 	pDC->BitBlt(scoreRect.left, scoreRect.top, scoreRect.right - scoreRect.left, scoreRect.bottom - scoreRect.top, 
 		&memDC, scoreRect.left, scoreRect.top, SRCCOPY);
 
-	//ÊÍ·ÅÄÚ´æ
+	//é‡Šæ”¾å†…å­˜
 	memDC.SelectObject(pOldBit);
 	memBitmap.DeleteObject();
 	memDC.DeleteDC();
 	ReleaseDC(pDC);
 }
 
-//µ±ÓÃ»§ÍÏ¶¯×îĞ¡»¯´°¿ÚÊ±ÏµÍ³µ÷ÓÃ´Ëº¯ÊıÈ¡µÃ¹â±ê
-//ÏÔÊ¾¡£
+//å½“ç”¨æˆ·æ‹–åŠ¨æœ€å°åŒ–çª—å£æ—¶ç³»ç»Ÿè°ƒç”¨æ­¤å‡½æ•°å–å¾—å…‰æ ‡
+//æ˜¾ç¤ºã€‚
 HCURSOR CMy2048Dlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-//²¶×½¼üÅÌ°´¼ü
+//æ•æ‰é”®ç›˜æŒ‰é”®
 BOOL CMy2048Dlg::PreTranslateMessage(MSG * pMsg){
 	if (pMsg->message == WM_KEYDOWN) {
 		switch (pMsg->wParam){
@@ -217,37 +217,37 @@ BOOL CMy2048Dlg::PreTranslateMessage(MSG * pMsg){
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
-//ĞÂ¾Ö³õÊ¼»¯
+//æ–°å±€åˆå§‹åŒ–
 void CMy2048Dlg::OnBnClickedRestart(){
-	memset(Matrix, 0, sizeof(Matrix));//¾ØÕóÇå¿Õ	
+	memset(Matrix, 0, sizeof(Matrix));//çŸ©é˜µæ¸…ç©º	
 	Score = 0;
 	isUndoValid = false;
-	GetDlgItem(IDC_UNDO)->EnableWindow(FALSE);//½ûÓÃUndo°´Å¥
-	GetDlgItem(IDC_RESTART)->SetFocus();//ÉèÖÃ½¹µã£¬·ÀÖ¹²¶×½¼üÅÌÏûÏ¢Ê§°Ü
+	GetDlgItem(IDC_UNDO)->EnableWindow(FALSE);//ç¦ç”¨UndoæŒ‰é’®
+	GetDlgItem(IDC_RESTART)->SetFocus();//è®¾ç½®ç„¦ç‚¹ï¼Œé˜²æ­¢æ•æ‰é”®ç›˜æ¶ˆæ¯å¤±è´¥
 	isFail = false;
-	putNewTile();putNewTile();//·ÅÖÃÁ½¸ö³õÊ¼¿é
+	putNewTile();putNewTile();//æ”¾ç½®ä¸¤ä¸ªåˆå§‹å—
 }
 
-//³·Ïú²Ù×÷
+//æ’¤é”€æ“ä½œ
 void CMy2048Dlg::OnBnClickedUndo() {
 	if (isUndoValid) {
-		memmove(Matrix, Last, sizeof(int) * 16);//»Ö¸´¾ØÕó
-		isUndoValid = false;//½ûÖ¹³·Ïú
-		GetDlgItem(IDC_UNDO)->EnableWindow(FALSE);//½ûÓÃUndo°´Å¥
-		GetDlgItem(IDC_RESTART)->SetFocus();//ÉèÖÃ½¹µã£¬·ÀÖ¹²¶×½¼üÅÌÊ§°Ü
+		memmove(Matrix, Last, sizeof(int) * 16);//æ¢å¤çŸ©é˜µ
+		isUndoValid = false;//ç¦æ­¢æ’¤é”€
+		GetDlgItem(IDC_UNDO)->EnableWindow(FALSE);//ç¦ç”¨UndoæŒ‰é’®
+		GetDlgItem(IDC_RESTART)->SetFocus();//è®¾ç½®ç„¦ç‚¹ï¼Œé˜²æ­¢æ•æ‰é”®ç›˜å¤±è´¥
 		isFail = false;
 	}
 }
 
-//´æµµ
+//å­˜æ¡£
 void CMy2048Dlg::OnBnClickedSave() {
-	CString FileName = CTime::GetCurrentTime().Format("2048_%Y%m%d%H%M%S");//ÒÔµ±Ç°Ê±¼äÎªÄ¬ÈÏÎÄ¼şÃû
-	CString Filter = _T("2048ÓÎÏ·½ø¶È´æµµÎÄ¼ş(*.sav)|*.sav||");
+	CString FileName = CTime::GetCurrentTime().Format("2048_%Y%m%d%H%M%S");//ä»¥å½“å‰æ—¶é—´ä¸ºé»˜è®¤æ–‡ä»¶å
+	CString Filter = _T("2048æ¸¸æˆè¿›åº¦å­˜æ¡£æ–‡ä»¶(*.sav)|*.sav||");
 	CString FilePathName;
-	CFileDialog dlg(FALSE, _T("sav"), FileName, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, Filter);//Save as¶Ô»°¿ò
+	CFileDialog dlg(FALSE, _T("sav"), FileName, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, Filter);//Save aså¯¹è¯æ¡†
 	if (dlg.DoModal() == IDOK)FilePathName = dlg.GetPathName();
 
-	//¶ş½øÖÆÎÄ¼şĞ´Èë
+	//äºŒè¿›åˆ¶æ–‡ä»¶å†™å…¥
 	ofstream fileOutBin(FilePathName, ios::out | ios::binary);
 	fileOutBin.write(reinterpret_cast<char *>(&Matrix), sizeof(Matrix));
 	fileOutBin.write(reinterpret_cast<char *>(&Last), sizeof(Last));
@@ -257,14 +257,14 @@ void CMy2048Dlg::OnBnClickedSave() {
 	fileOutBin.close();
 }
 
-//¶Áµµ
+//è¯»æ¡£
 void CMy2048Dlg::OnBnClickedLoad() {
-	CString Filter = _T("2048ÓÎÏ·½ø¶È´æµµÎÄ¼ş(*.sav)|*.sav||");
+	CString Filter = _T("2048æ¸¸æˆè¿›åº¦å­˜æ¡£æ–‡ä»¶(*.sav)|*.sav||");
 	CString FilePathName;
-	CFileDialog dlg(TRUE, _T("sav"), NULL, OFN_HIDEREADONLY | OFN_READONLY, Filter);//Open¶Ô»°¿ò
+	CFileDialog dlg(TRUE, _T("sav"), NULL, OFN_HIDEREADONLY | OFN_READONLY, Filter);//Openå¯¹è¯æ¡†
 	if (dlg.DoModal() == IDOK)FilePathName = dlg.GetPathName();
 
-	//¶ş½øÖÆÎÄ¼ş¶Á³ö
+	//äºŒè¿›åˆ¶æ–‡ä»¶è¯»å‡º
 	ifstream fileInBin(FilePathName, ios::in | ios::binary);
 	fileInBin.read(reinterpret_cast<char *>(&Matrix), sizeof(Matrix));
 	fileInBin.read(reinterpret_cast<char *>(&Last), sizeof(Last));
@@ -272,10 +272,10 @@ void CMy2048Dlg::OnBnClickedLoad() {
 	fileInBin.read(reinterpret_cast<char *>(&isUndoValid), sizeof(isUndoValid));
 	fileInBin.read(reinterpret_cast<char *>(&isFail), sizeof(isFail));
 	fileInBin.close();
-	if (isUndoValid)GetDlgItem(IDC_UNDO)->EnableWindow(TRUE);//ÈôÎª¿É³·Ïú×´Ì¬£¬ÆôÓÃUndo°´Å¥
+	if (isUndoValid)GetDlgItem(IDC_UNDO)->EnableWindow(TRUE);//è‹¥ä¸ºå¯æ’¤é”€çŠ¶æ€ï¼Œå¯ç”¨UndoæŒ‰é’®
 }
 
-//ÍË³öÈ·ÈÏ£¬±ÜÃâÎ´´æµµÎó¹ØÓÎÏ·
+//é€€å‡ºç¡®è®¤ï¼Œé¿å…æœªå­˜æ¡£è¯¯å…³æ¸¸æˆ
 void CMy2048Dlg::OnClose()
 {
 	if (IDNO == ::MessageBox(this->m_hWnd, _T("Please be aware that you can save your game \
@@ -283,60 +283,60 @@ and load it back at any time.\nSure to quit?"), _T("Quit Game"), MB_ICONQUESTION
 	CDialog::OnClose();
 }
 
-//Ïò¾ØÕóÖĞ·ÅÖÃÒ»¸öĞÂ¿é£¨2»ò4£©
+//å‘çŸ©é˜µä¸­æ”¾ç½®ä¸€ä¸ªæ–°å—ï¼ˆ2æˆ–4ï¼‰
 void CMy2048Dlg::putNewTile(){
-	//¼ÇÂ¼ËùÓĞ¿Õ¸ñµÄÎ»ÖÃ
+	//è®°å½•æ‰€æœ‰ç©ºæ ¼çš„ä½ç½®
 	deque<int> posBlank;
 	for (int i = 0;i != 16;++i)
 		if (0 == Matrix[0][i])posBlank.push_back(i);
-	if (posBlank.empty()) return;//ÎŞ¿Õ·µ»Ø
-	Matrix[0][posBlank[rand() % posBlank.size()]] = rand() % 100 > 50 ? 2 : 1;//Ëæ»úÉú³É¿é
+	if (posBlank.empty()) return;//æ— ç©ºè¿”å›
+	Matrix[0][posBlank[rand() % posBlank.size()]] = rand() % 100 > 50 ? 2 : 1;//éšæœºç”Ÿæˆå—
 }
 
-//ÑØÒ»¸ö·½ÏòÒÆ¶¯£¬²ÎÊıÎªÒÆ¶¯·½Ïò
+//æ²¿ä¸€ä¸ªæ–¹å‘ç§»åŠ¨ï¼Œå‚æ•°ä¸ºç§»åŠ¨æ–¹å‘
 void CMy2048Dlg::MoveAlong(ARROW direction) {
-	if (isFail) return;//ÓÎÏ·ÒÑÊ§°Ü£¬²»ÏìÓ¦
+	if (isFail) return;//æ¸¸æˆå·²å¤±è´¥ï¼Œä¸å“åº”
 	
-	//²¶×½ÒÆ¶¯Ç°×´Ì¬
+	//æ•æ‰ç§»åŠ¨å‰çŠ¶æ€
 	int capture[4][4];
 	memcpy(capture, Matrix, sizeof(int) * 16);
 	//for (int i = 0;i != 4;++i)for (int j = 0;j != 4;++j)capture[i][j] = Matrix[i][j];
 
-	deque<int>temp;//ÓÃÓÚÏòÒ»¸ö·½ÏòÑ¹ÊµÊı×Ö¿é£¬Ë³ĞòÓÃpush_back£¬ÄæĞòÓÃpush_front£¬Òò´ËÊ¹ÓÃdeque
+	deque<int>temp;//ç”¨äºå‘ä¸€ä¸ªæ–¹å‘å‹å®æ•°å­—å—ï¼Œé¡ºåºç”¨push_backï¼Œé€†åºç”¨push_frontï¼Œå› æ­¤ä½¿ç”¨deque
 	
 	switch (direction) {
 	case LEFT:
 		for (int row = 0;row != 4;++row) {
-			for (int col = 0;col < 3;++col) {//Ïò×óÑ¹£¬´Ó×óÏòÓÒºÏ²¢
-				if (Matrix[col][row] == 0)continue;//¸Ã¸ñÎª¿Õ£¬Ìø¹ı
+			for (int col = 0;col < 3;++col) {//å‘å·¦å‹ï¼Œä»å·¦å‘å³åˆå¹¶
+				if (Matrix[col][row] == 0)continue;//è¯¥æ ¼ä¸ºç©ºï¼Œè·³è¿‡
 				for (int pos = col + 1;pos < 4;++pos) {
-					if (Matrix[pos][row] == 0)continue;//¸Ã¸ñÎª¿Õ£¬Ìø¹ı
-					if (Matrix[pos][row] == Matrix[col][row]) {//ºÏ²¢ÏàÍ¬¸ñ
-						Matrix[pos][row] = 0;//ÓÒ¸ñÇå¿Õ
-						Matrix[col][row]++;//×ó¸ñÖ¸ÊıÔö¼Ó1
-						Score += tile[Matrix[col][row]].num;//¼Ó·Ö
+					if (Matrix[pos][row] == 0)continue;//è¯¥æ ¼ä¸ºç©ºï¼Œè·³è¿‡
+					if (Matrix[pos][row] == Matrix[col][row]) {//åˆå¹¶ç›¸åŒæ ¼
+						Matrix[pos][row] = 0;//å³æ ¼æ¸…ç©º
+						Matrix[col][row]++;//å·¦æ ¼æŒ‡æ•°å¢åŠ 1
+						Score += tile[Matrix[col][row]].num;//åŠ åˆ†
 						col=pos;
 						break;
 					}
-					break;//Óöµ½²»ÏàÍ¬µÄ¿é£¬ÍË³ö
+					break;//é‡åˆ°ä¸ç›¸åŒçš„å—ï¼Œé€€å‡º
 				}
 			}
-			//Ïò×óÑ¹Êµ
+			//å‘å·¦å‹å®
 			temp.clear();
-			for (int col = 0;col != 4;++col) if (Matrix[col][row] != 0)temp.push_back(Matrix[col][row]);//È¡·Ç0Êı×Ö
+			for (int col = 0;col != 4;++col) if (Matrix[col][row] != 0)temp.push_back(Matrix[col][row]);//å–é0æ•°å­—
 			for (int i = 0;i != temp.size();++i)Matrix[i][row] = temp[i];
 			for (int i = temp.size();i != 4;++i)Matrix[i][row] = 0;
 		}
 		break;
 	case RIGHT:
 		for (int row = 0;row != 4;++row) {
-			for (int col = 3;col > 0;--col) {//ÏòÓÒÑ¹£¬´ÓÓÒÏò×óºÏ²¢
-				if (Matrix[col][row] == 0)continue;//¸Ã¸ñÎª¿Õ£¬Ìø¹ı
+			for (int col = 3;col > 0;--col) {//å‘å³å‹ï¼Œä»å³å‘å·¦åˆå¹¶
+				if (Matrix[col][row] == 0)continue;//è¯¥æ ¼ä¸ºç©ºï¼Œè·³è¿‡
 				for (int pos = col - 1;pos > -1;--pos) {
-					if (Matrix[pos][row] == 0)continue;//¸Ã¸ñÎª¿Õ£¬Ìø¹ı
-					if (Matrix[pos][row] == Matrix[col][row]) {//ºÏ²¢ÏàÍ¬¸ñ
-						Matrix[pos][row] = 0;//×ó¸ñÇå¿Õ
-						Matrix[col][row]++;//ÓÒ¸ñÖ¸ÊıÔö¼Ó1
+					if (Matrix[pos][row] == 0)continue;//è¯¥æ ¼ä¸ºç©ºï¼Œè·³è¿‡
+					if (Matrix[pos][row] == Matrix[col][row]) {//åˆå¹¶ç›¸åŒæ ¼
+						Matrix[pos][row] = 0;//å·¦æ ¼æ¸…ç©º
+						Matrix[col][row]++;//å³æ ¼æŒ‡æ•°å¢åŠ 1
 						Score += tile[Matrix[col][row]].num;
 						col=pos;
 						break;
@@ -344,22 +344,22 @@ void CMy2048Dlg::MoveAlong(ARROW direction) {
 					break;
 				}
 			}
-			//ÏòÓÒÑ¹Êµ
+			//å‘å³å‹å®
 			temp.clear();
-			for (int col = 0;col != 4;++col) if (Matrix[col][row] != 0)temp.push_front(Matrix[col][row]);//È¡·Ç0Êı×Ö
+			for (int col = 0;col != 4;++col) if (Matrix[col][row] != 0)temp.push_front(Matrix[col][row]);//å–é0æ•°å­—
 			for (int i = 0;i != temp.size();++i)Matrix[3 - i][row] = temp[i];
 			for (int i = temp.size();i != 4;++i)Matrix[3 - i][row] = 0;
 		}
 		break;
 	case UP:
 		for (int col = 0;col != 4;++col) {
-			for (int row = 0;row < 3;++row) {//ÏòÉÏÑ¹£¬´ÓÉÏÏòÏÂºÏ²¢
-				if (Matrix[col][row] == 0)continue;//¸Ã¸ñÎª¿Õ£¬Ìø¹ı
+			for (int row = 0;row < 3;++row) {//å‘ä¸Šå‹ï¼Œä»ä¸Šå‘ä¸‹åˆå¹¶
+				if (Matrix[col][row] == 0)continue;//è¯¥æ ¼ä¸ºç©ºï¼Œè·³è¿‡
 				for (int pos = row + 1;pos < 4;++pos) {
-					if (Matrix[col][pos] == 0)continue;//¸Ã¸ñÎª¿Õ£¬Ìø¹ı
-					if (Matrix[col][pos] == Matrix[col][row]) {//ºÏ²¢ÏàÍ¬¸ñ
-						Matrix[col][pos] = 0;//ÏÂ¸ñÇå¿Õ
-						Matrix[col][row]++;//ÉÏ¸ñÖ¸Êı¼Ó1
+					if (Matrix[col][pos] == 0)continue;//è¯¥æ ¼ä¸ºç©ºï¼Œè·³è¿‡
+					if (Matrix[col][pos] == Matrix[col][row]) {//åˆå¹¶ç›¸åŒæ ¼
+						Matrix[col][pos] = 0;//ä¸‹æ ¼æ¸…ç©º
+						Matrix[col][row]++;//ä¸Šæ ¼æŒ‡æ•°åŠ 1
 						Score += tile[Matrix[col][row]].num;
 						row=pos;
 						break;
@@ -367,22 +367,22 @@ void CMy2048Dlg::MoveAlong(ARROW direction) {
 					break;
 				}
 			}
-			//ÏòÉÏÑ¹Êµ
+			//å‘ä¸Šå‹å®
 			temp.clear();
-			for (int row = 0;row != 4;++row) if (Matrix[col][row] != 0)temp.push_back(Matrix[col][row]);//È¡·Ç0Êı×Ö
+			for (int row = 0;row != 4;++row) if (Matrix[col][row] != 0)temp.push_back(Matrix[col][row]);//å–é0æ•°å­—
 			for (int i = 0;i != temp.size();++i)Matrix[col][i] = temp[i];
 			for (int i = temp.size();i != 4;++i)Matrix[col][i] = 0;
 		}
 		break;
 	case DOWN:
 		for (int col = 0;col < 4;++col) {
-			for (int row = 3;row > 0;--row) {//ÏòÏÂÑ¹£¬´ÓÏÂÏòÉÏºÏ²¢
-				if (Matrix[col][row] == 0)continue;//¸Ã¸ñÎª¿Õ£¬Ìø¹ı
+			for (int row = 3;row > 0;--row) {//å‘ä¸‹å‹ï¼Œä»ä¸‹å‘ä¸Šåˆå¹¶
+				if (Matrix[col][row] == 0)continue;//è¯¥æ ¼ä¸ºç©ºï¼Œè·³è¿‡
 				for (int pos = row - 1;pos > -1;--pos) {
-					if (Matrix[col][pos] == 0)continue;//¸Ã¸ñÎª¿Õ£¬Ìø¹ı
-					if (Matrix[col][pos] == Matrix[col][row]) {//ºÏ²¢ÏàÍ¬¸ñ
-						Matrix[col][pos] = 0;//ÉÏ¸ñÇå¿Õ
-						Matrix[col][row]++;//ÏÂ¸ñÖ¸Êı¼Ó1
+					if (Matrix[col][pos] == 0)continue;//è¯¥æ ¼ä¸ºç©ºï¼Œè·³è¿‡
+					if (Matrix[col][pos] == Matrix[col][row]) {//åˆå¹¶ç›¸åŒæ ¼
+						Matrix[col][pos] = 0;//ä¸Šæ ¼æ¸…ç©º
+						Matrix[col][row]++;//ä¸‹æ ¼æŒ‡æ•°åŠ 1
 						Score += tile[Matrix[col][row]].num;
 						row=pos;
 						break;
@@ -390,9 +390,9 @@ void CMy2048Dlg::MoveAlong(ARROW direction) {
 					break;
 				}
 			}
-			//ÏòÏÂÑ¹Êµ
+			//å‘ä¸‹å‹å®
 			temp.clear();
-			for (int row = 0;row != 4;++row) if (Matrix[col][row] != 0)temp.push_front(Matrix[col][row]);//È¡·Ç0Êı×Ö
+			for (int row = 0;row != 4;++row) if (Matrix[col][row] != 0)temp.push_front(Matrix[col][row]);//å–é0æ•°å­—
 			for (int i = 0;i != temp.size();++i)Matrix[col][3 - i] = temp[i];
 			for (int i = temp.size();i != 4;++i)Matrix[col][3 - i] = 0;
 		}
@@ -400,7 +400,7 @@ void CMy2048Dlg::MoveAlong(ARROW direction) {
 	default:break;
 	}
 
-	//¼ì²éÓÎÏ·¾ØÕóÊÇ·ñ·¢Éú¸Ä±ä
+	//æ£€æŸ¥æ¸¸æˆçŸ©é˜µæ˜¯å¦å‘ç”Ÿæ”¹å˜
 	bool changed = false;
 	for (int i = 0;i != 4;++i) {
 		for (int j = 0;j != 4;++j) {
@@ -409,23 +409,23 @@ void CMy2048Dlg::MoveAlong(ARROW direction) {
 		if (changed)break;
 	}
 	if (changed) {
-		putNewTile();//·¢Éú¸Ä±äÔòÊÇÓĞĞ§²Ù×÷£¬½«Ôö¼ÓÒ»¸öĞÂ¿é
-		memmove(Last,capture,sizeof(int)*16);//½«capture±£´æÎªLast×´Ì¬
+		putNewTile();//å‘ç”Ÿæ”¹å˜åˆ™æ˜¯æœ‰æ•ˆæ“ä½œï¼Œå°†å¢åŠ ä¸€ä¸ªæ–°å—
+		memmove(Last,capture,sizeof(int)*16);//å°†captureä¿å­˜ä¸ºLastçŠ¶æ€
 		
-		if (!isUndoValid) {//ÒÑÓĞLast×´Ì¬£¬¿ÉÒÔÔÊĞí³·ÏúÁË
+		if (!isUndoValid) {//å·²æœ‰LastçŠ¶æ€ï¼Œå¯ä»¥å…è®¸æ’¤é”€äº†
 			isUndoValid = true;
 			GetDlgItem(IDC_UNDO)->EnableWindow(TRUE);
 		}
 	}
 
-	//ÅĞ¶ÏÒÆ¶¯ºóÓÎÏ·ÊÇ·ñÊ§°Ü
+	//åˆ¤æ–­ç§»åŠ¨åæ¸¸æˆæ˜¯å¦å¤±è´¥
 	for (int i = 0; i != 16; ++i)
-			if (Matrix[0][i] == 0)return;//ÓĞ¿Õ¸ñ		
+			if (Matrix[0][i] == 0)return;//æœ‰ç©ºæ ¼		
 	for (int col = 0; col != 3; ++col)
 		for (int row = 0; row != 4; ++row)
-			if (Matrix[col][row] == Matrix[col + 1][row])return;//ºáÏòÓĞÏàÁÚÏàÍ¬¿é		
+			if (Matrix[col][row] == Matrix[col + 1][row])return;//æ¨ªå‘æœ‰ç›¸é‚»ç›¸åŒå—		
 	for (int col = 0; col != 4; ++col)
 		for (int row = 0; row != 3; ++row)
-			if (Matrix[col][row] == Matrix[col][row + 1])return;//×İÏòÓĞÏàÁÚÏàÍ¬¿é	
+			if (Matrix[col][row] == Matrix[col][row + 1])return;//çºµå‘æœ‰ç›¸é‚»ç›¸åŒå—	
 	isFail = true;
 }
